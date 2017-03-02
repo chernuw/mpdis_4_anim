@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MPDIS4_animation</string>
+    <string name="button1">Rotate</string>
+    <string name="button2">Animate</string>
+    <string name="button3">Fade</string>
+    <string name="button4">Group</string>
+    <string name="textView">Large Text</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
