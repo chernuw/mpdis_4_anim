@@ -97,7 +97,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Button button3=(Button)findViewById(R.id.Button03);
                 button3.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.hyperspace_jump));
                 if (aniView.getAlpha() > 0) {
-                    dest = 1;
+                    dest = 0;
                 }
                 ObjectAnimator animation3 = ObjectAnimator.ofFloat(aniView, "alpha", dest);
                 animation3.setDuration(2000);
