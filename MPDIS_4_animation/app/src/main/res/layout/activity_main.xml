@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/layout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout android:id="@+id/test"
+    android:orientation="vertical"
+    >
+
+        <LinearLayout android:id="@+id/test"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -34,32 +37,37 @@
         android:text="Animate" />
 </LinearLayout>
 
-    <ImageView android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/img"
-        android:background="@android:color/holo_purple" />
+
 
     <TextView android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView1"
-        android:layout_alignRight="@+id/imageView1"
         android:layout_marginBottom="30dp"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_above="@+id/imageView1"
 
-    <SeekBar
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:max="2"
-        android:progress="1"
-        android:id="@+id/seekBar"
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/img"/>
+        <!--android:layout_above="@+id/changeActivity"
+        android:layout_marginBottom="37dp"-->
+    <Button
+        android:text="Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:id="@+id/changeActivity"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
+
 
 
 </RelativeLayout>

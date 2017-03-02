@@ -19,13 +19,34 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
+    Button changeActivity;
+    @Override
+    public void onClick(View view){
+        switch(view.getId()) {
+            case R.id.changeActivity:
+                Intent intent = new Intent(this, SecondActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        changeActivity = (Button) findViewById(R.id.changeActivity);
+        changeActivity.setOnClickListener(this);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -66,7 +87,7 @@ public class MainActivity extends Activity {
                 animation2.start();
                 break;
 
-           /* case R.id.Button03:
+            case R.id.Button03:
                 // Demonstrate fading and adding an AnimationListener
                 RelativeLayout mainContainer = (RelativeLayout) findViewById(R.id.layout);
                 LayoutAnimationController controller = AnimationUtils.loadLayoutAnimation(this, R.anim.main_layout_animation);
@@ -78,11 +99,10 @@ public class MainActivity extends Activity {
                 if (aniView.getAlpha() > 0) {
                     dest = 0;
                 }
-                ObjectAnimator animation3 = ObjectAnimator.ofFloat(aniView,
-                        "alpha", dest);
+                ObjectAnimator animation3 = ObjectAnimator.ofFloat(aniView, "alpha", dest);
                 animation3.setDuration(2000);
                 animation3.start();
-                break;*/
+                break;
 
             case R.id.Button04:
 
@@ -110,10 +130,10 @@ public class MainActivity extends Activity {
         return super.onCreateOptionsMenu(menu);
     }*/
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, HitActivity.class);
         startActivity(intent);
         return true;
-    }
+    }*/
 }
