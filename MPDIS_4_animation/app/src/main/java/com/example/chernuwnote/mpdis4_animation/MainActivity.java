@@ -1,70 +1,95 @@
 package com.example.chernuwnote.mpdis4_animation;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Paint;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
-public class MainActivity extends Activity implements View.OnClickListener {
-    Button changeActivity;
-    @Override
-    public void onClick(View view){
-        switch(view.getId()) {
-            case R.id.changeActivity:
-                Intent intent = new Intent(this, SecondActivity.class);
-                startActivity(intent);
-                break;
 
-            default:
-                break;
-        }
-    }
+
+public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeListener {
+    SeekBar seekbar;
+    Switch mSwitch;
+    Boolean synchronize=false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        changeActivity = (Button) findViewById(R.id.changeActivity);
-        changeActivity.setOnClickListener(this);
+
+        seekbar  = (SeekBar)findViewById(R.id.seekBar);
+        seekbar.setOnSeekBarChangeListener(this);
+
+
+        mSwitch = (Switch) findViewById(R.id.switch1);
+        mSwitch.setChecked(false);
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    synchronize = true;
+                } else {
+                    synchronize= false;
+                }
+            }
+        });
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @SuppressLint("NewApi")
-    public void startAnimation(View view) {
-        float dest = 0;
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    public void startAnimation(View view) throws InterruptedException {
+        float dest;
         ImageView aniView = (ImageView) findViewById(R.id.imageView1);
+        ImageView aniView2 = (ImageView) findViewById(R.id.imageView2);
         switch (view.getId()) {
 
             case R.id.Button01:
                 dest = 360;
-                if (aniView.getRotation() == 360) {
+                if (aniView.getRotation() == 360 & aniView2.getRotation() == 360) {
                     System.out.println(aniView.getAlpha());
+                    System.out.println(aniView2.getAlpha());
                     dest = 0;
                 }
                 ObjectAnimator animation1 = ObjectAnimator.ofFloat(aniView, "rotation", dest);
-                animation1.setDuration(2000);
-                animation1.start();
+                ObjectAnimator animation12 = ObjectAnimator.ofFloat(aniView2, "rotation", dest);
+
+                if(synchronize){
+                    animation1.setDuration((long)5000/(seekbar.getProgress()+1));
+                    animation12.setDuration((long)5000/(seekbar.getProgress()+1));
+                    animation1.start();
+                    animation12.start();
+                } else{
+                    animation1.setDuration((long)5000/(seekbar.getProgress()+1));
+                    animation12.setDuration((long)10000/(seekbar.getProgress()+1));
+                    animation1.start();
+                    animation12.start();
+                }
                 // Show how to load an animation from XML
                 // Animation animation1 = AnimationUtils.loadAnimation(this,
                 // R.anim.myanimation);
@@ -121,19 +146,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
             default:
                 break;
         }
-
     }
-
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-/*    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(this, HitActivity.class);
-        startActivity(intent);
-        return true;
-    }*/
 }

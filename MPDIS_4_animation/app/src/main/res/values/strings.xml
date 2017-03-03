@@ -6,6 +6,8 @@
     <string name="button4">Group</string>
     <string name="textView">Large Text</string>
     <string name="title_activity_menu">MenuActivity</string>
+    <string name="description_img">Android logo</string>
+    <string name="synchronize_switch">Synchronize animation</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

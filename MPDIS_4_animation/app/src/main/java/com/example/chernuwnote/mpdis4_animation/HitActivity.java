@@ -4,12 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import java.util.Random;
@@ -42,11 +38,9 @@ public class HitActivity extends Activity {
             public void onAnimationEnd(Animator animation) {
                 int nextX = randon.nextInt(width);
                 int nextY = randon.nextInt(height);
-                animation1 = ObjectAnimator.ofFloat(button, "x", button.getX(),
-                        nextX);
+                animation1 = ObjectAnimator.ofFloat(button, "x", button.getX(),nextX);
                 animation1.setDuration(1400);
-                animation2 = ObjectAnimator.ofFloat(button, "y", button.getY(),
-                        nextY);
+                animation2 = ObjectAnimator.ofFloat(button, "y", button.getY(),nextY);
                 animation2.setDuration(1400);
                 set.playTogether(animation1, animation2);
                 set.start();
@@ -54,14 +48,6 @@ public class HitActivity extends Activity {
         });
     }
 
-    public void onClick(View view) {
-        String string = button.getText().toString();
-        int hitTarget = Integer.valueOf(string) + 1;
-        button.setText(String.valueOf(hitTarget));
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @SuppressLint("NewApi")
     private AnimatorSet createAnimation() {
         int nextX = randon.nextInt(width);
         int nextY = randon.nextInt(height);
